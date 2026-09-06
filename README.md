@@ -1,53 +1,50 @@
-<div align="center">
-  <img src="https://raw.githubusercontent.com/MicaelliMedeiros/micaellimedeiros/master/image/computer-illustration.png" alt="A vector illustration of a computer" width="400"/>
-</div>
+# GenieZK
 
-# Hi there, I'm GenieZK 👋
+Decompose a field element into 254 bits over BN254 and, for about a third of the possible values,
+the circuit will accept two different bit strings for the same one. Nothing in the constraint
+system says which of them counts, so the prover picks. That gap is the kind of thing I look for: a primitive that works exactly as specified,
+sitting under code that assumed the specification closed a door it left open.
 
-I'm a cryptographer, privacy advocate, and decentralized systems architect building for a more equitable creator economy. My core belief is that **privacy is not about hiding, it's about control.**
+I work on proof systems — arithmetization, polynomial commitments, recursion — and on the circuit
+bugs that survive review.
 
-I specialize in Zero-Knowledge (ZK) proofs and am passionate about leveraging next-generation protocols like **Midnight** to build solutions that empower individuals with true data ownership. I write code to give power back to the user.
+Privacy, to me, is a question of control: which single fact you let someone verify, and what they
+can infer past it. Zero-knowledge proofs are what make that question answerable in a form another
+party can check.
 
----
+## Current work
 
-### 🔭 I’m Currently Building:
+**OriProof** — proof of origin for digital content. Specification stage. The next thing to land is
+a reference circuit for the one claim that actually needs zero knowledge: *this re-upload derives
+from a work I registered*, proven without revealing the original, the owner, or the license terms.
 
-<a href="https://github.com/GenieZK/OriProof">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=GenieZK&repo=OriProof&theme=github_dark&border_radius=5" />
-</a>
+Crawling platforms and matching perceptual hashes at web scale is the other half of that problem,
+and it belongs to infrastructure rather than to cryptography. I keep the two apart. Conflating
+them is how a protocol ends up claiming a trust model it does not have.
 
-**OriProof** is a decentralized protocol to establish immutable **Proof of Origin** for digital content. We're building the infrastructure to help creators fight plagiarism, automate royalty collection, and reclaim the value they create.
+## What I write about
 
----
+- **Proof systems compared on the axes that decide a design**: proof size, verifier cost, setup
+  assumptions, recursion cost. Adjectives do not appear in the comparison.
+- **Circuit failure modes**: under-constrained witnesses, aliasing in bit decomposition,
+  unconstrained denominators, nullifiers that replay across scopes, Fiat–Shamir transcripts that
+  absorb too little. Each one gets a minimal circuit that reproduces the bug, plus a test that
+  fails before the fix and passes after it.
+- **Cost, measured.** Constraint counts and prover times come with the parameters, the library
+  version, and the hardware they were taken on. A number without those is not a number.
 
-### 💻 Tech & Tools I'm Passionate About:
+## How I state things
 
-<p align="left">
-  <a href="https://www.rust-lang.org" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rust/rust-plain.svg" alt="rust" width="40" height="40"/>
-  </a>
-  <a href="https://www.python.org" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/>
-  </a>
-  <a href="https://nodejs.org" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/>
-  </a>
-  <a href="https://www.docker.com/" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/>
-  </a>
-</p>
+Claims carry their assumptions. I distinguish an argument from a proof, and computational
+soundness from statistical soundness; a scheme is zero-knowledge only against the adversary its
+simulator was built for. Where I have not measured something, I say so.
 
-*   **Blockchains:** Midnight, Cardano, Ethereum
-*   **Cryptography:** ZK-SNARKs, ZK-STARKs, Homomorphic Encryption
-*   **Decentralization:** IPFS, Arweave, Libp2p
-*   **AI/ML:** Perceptual Hashing, Audio Fingerprinting for our off-chain detection engine.
+## Notes
 
----
-<details>
-  <summary>📈 My GitHub Stats</summary>
-  <br/>
-  <div align="center">
-    <img src="https://github-readme-stats.vercel.app/api?username=GenieZK&show_icons=true&theme=github_dark&hide_border=true&count_private=true" alt="GenieZK's GitHub stats" />
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=GenieZK&layout=compact&theme=github_dark&hide_border=true" alt="Top Languages" />
-  </div>
-</details>
+- [Two bit strings, one field element](notes/0001-bit-decomposition-aliasing.md) — 254-bit
+  decomposition over BN254 is under-constrained in one direction only, which is why the check that
+  looks like the obvious demonstration is the one case that holds.
+
+## Contact
+
+Open an issue on any repository here.
